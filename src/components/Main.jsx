@@ -30,6 +30,7 @@ function Main(){
         <div>
             Main
             This is Fatih's comment
+            This is Ahmet's comment
         </div>
     )
 };

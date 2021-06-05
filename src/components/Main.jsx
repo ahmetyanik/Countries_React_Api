@@ -1,39 +1,30 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
+function Main() {
+  const [countries, setCountries] = useState([]);
 
-function Main(){
+  function getCountries() {
+    axios.get("https://restcountries.eu/rest/v2/all").then(function (info) {
+      setCountries(info.data);
+    });
+  }
 
-    const [countries,setCountries]=useState([]);
+  useEffect(getCountries, []);
 
+  
 
+  return (
+    <div className="container mt-5">
 
-    function getCountries(){
-
-        axios.get("https://restcountries.eu/rest/v2/all").then(function(info){
-            setCountries(info.data);
-        })
-    };
-
-
-    useEffect(getCountries,[]);
-
-    console.log(countries);
-
-
- 
-
-
-
-
-    return(
-        <div>
-            Main
-            This is Fatih's comment
-            This is Ahmet's comment
-        </div>
-    )
-};
-
+    <h3>Countries</h3>
+      
+        {countries.map(function (ulke) {
+          return <div className="alert alert-dark d-flex justify-content-between" role="alert"><div>{ulke.name}</div>  <img src={ulke.flag} style={{width:"35px"}}/></div>;
+        })}
+      
+    </div>
+  );
+}
 
 export default Main;

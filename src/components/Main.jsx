@@ -2,38 +2,33 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 
-function Main(){
+function Main() {
 
-    const [countries,setCountries]=useState([]);
+    const [countries, setCountries] = useState([]);
 
 
 
-    function getCountries(){
+    function getCountries() {
 
-        axios.get("https://restcountries.eu/rest/v2/all").then(function(info){
+        axios.get("https://restcountries.eu/rest/v2/all").then(function (info) {
             setCountries(info.data);
         })
     };
 
 
-    useEffect(getCountries,[]);
-
-    console.log(countries);
+    useEffect(getCountries, []);
 
 
- 
-
-
-
-
-    return(
+    return (
         <div>
-            Main
-            This is Fatih's comment
-            This is Ahmet's comment
+            {countries.map(function (ulke) {
+                return <div
+                    class="alert alert-secondary" role="alert">{ulke.name}</div>;
+            })}
+
         </div>
-    )
-};
+    );
+}
 
 
 export default Main;
